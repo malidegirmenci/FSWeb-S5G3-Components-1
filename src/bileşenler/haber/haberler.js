@@ -2,6 +2,9 @@ import "./haberler.less";
 // Haberleri üretmek için aşağıdaki data kullanılacak. Önce inceleyin sonra 94. satıra geçin.
 // OPSİYONEL: Kendinizi maceracı hissediyorsanız, bu verileri farklı bir modülden dışa aktarmaya çalışın ve buraya aktarın.
 // ES6 Modülleri ile ilgili bilgi için bakabilirsiniz: https://exploringjs.com/es6/ch_modules.html#sec_basics-of-es6-modules
+
+const { data } = require('./data.js');
+/*
 const data = [
   {
     baslik: 'Workintech Öğrencileri: "Bizler en iyi öğrencileriz!"',
@@ -87,10 +90,10 @@ const data = [
     ucuncuParagraf: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`,
-  },
+  }
 ];
 
-/*
+
   Adım 1: Haber oluşturmak için 'haberYapici' adında bir bileşen(component) oluşturun.
   Bileşeniniz, argümanı haberleri içeren dizi olarak alan bir fonksiyon olacak,
   ve aşağıdaki gibi görünen bir DOM düğümü döndürecek:
@@ -115,3 +118,39 @@ const data = [
   Adım 5: Veri dizisine yeni haber nesnesi eklemeyi deneyin. Diğer verilerle aynı yapıda olmasına dikkat edin.
   Eklediğiniz yeni haberi görmek için sayfayı yenileyin.
 */
+const haberYapici = (haber) => {
+  const divArticle = document.createElement("div");
+  divArticle.classList.add("article");
+
+  const h2Title = document.createElement("h2");
+  h2Title.textContent = haber.baslik;
+
+  const pDate = document.createElement("p")
+  pDate.classList.add("tarih")
+  pDate.textContent = haber.tarih;
+
+  const p1 = document.createElement("p")
+  p1.textContent = haber.ilkParagraf;
+
+  const p2 = document.createElement("p")
+  p2.textContent = haber.ikinciParagraf;
+
+  const p3 = document.createElement("p")
+  p3.textContent = haber.ucuncuParagraf;
+
+  const buttonExpand = document.createElement("button")
+  buttonExpand.classList.add("expandButton")
+  buttonExpand.textContent = "+";
+
+  buttonExpand.addEventListener("click", () => {
+    divArticle.classList.toggle("article-open");
+  });
+  divArticle.append(h2Title,pDate,p1,p2,p3,buttonExpand);
+  return divArticle
+};
+
+const divArticles = document.querySelector(".articles");
+
+data.forEach((haber) => {
+  divArticles.append(haberYapici(haber));
+});
