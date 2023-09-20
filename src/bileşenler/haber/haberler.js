@@ -125,21 +125,21 @@ const haberYapici = (haber) => {
   const h2Title = document.createElement("h2");
   h2Title.textContent = haber.baslik;
 
-  const pDate = document.createElement("p")
-  pDate.classList.add("tarih")
+  const pDate = document.createElement("p");
+  pDate.classList.add("tarih");
   pDate.textContent = haber.tarih;
 
-  const p1 = document.createElement("p")
+  const p1 = document.createElement("p");
   p1.textContent = haber.ilkParagraf;
 
-  const p2 = document.createElement("p")
+  const p2 = document.createElement("p");
   p2.textContent = haber.ikinciParagraf;
 
-  const p3 = document.createElement("p")
+  const p3 = document.createElement("p");
   p3.textContent = haber.ucuncuParagraf;
 
-  const buttonExpand = document.createElement("button")
-  buttonExpand.classList.add("expandButton")
+  const buttonExpand = document.createElement("button");
+  buttonExpand.classList.add("expandButton");
   buttonExpand.textContent = "+";
 
   buttonExpand.addEventListener("click", () => {
